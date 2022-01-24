@@ -26,7 +26,7 @@ const Btn = styled.button`
 `;
 
 // [P5]컴포넌트 만들때 요소의 속성값을 지정해 줄 수 있음.
-const Input = styled.input.attrs({ required: true, minLength: 5 })`
+const Input = styled.input.attrs({ required: true, maxLength: 5 })`
   background-color: tomato;
 `;
 
