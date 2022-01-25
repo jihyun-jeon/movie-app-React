@@ -49,6 +49,7 @@ const Box = styled.div`
 
   // [p3] = span이라고 바로 태그명을 지정할 수 있지만, 태그명이 변해도 적용될 수 있기 위해 자식요소도 컴포넌트를 만들어 적용함.
   // styled 컴포넌트 안에서 다른 styled 컴포넌트를 지정할 수 있음.
+
   ${Emoji} {
     background-color: gray;
     &:hover {
@@ -62,7 +63,7 @@ const Box = styled.div`
   /* span: hover <-이렇게 쓰는걸 간단하게 &:hover 이렇게 쓸 수 있음.*/
 `;
 
-function AniApp() {
+function Practice() {
   return (
     <Wrapper>
       <Box>
@@ -74,4 +75,4 @@ function AniApp() {
   );
 }
 
-export default AniApp;
+export default Practice;

@@ -9,8 +9,8 @@ const Father = styled.div`
 const Box = styled.div`
   width: 100px;
   height: 100px;
-  background-color: ${(props) =>
-    props.bgColor}; //[P3]props를 받는 함수를 적어줌
+  //[P3]props를 받는 함수를 적어줌
+  /* background-color:$ {}안에 넣어줘야 함 (props) => props.bgColor; */
 `;
 
 // [P4]기존의 Box컴포넌트 속성에 추가적으로 속성 더해줄 경우
@@ -34,8 +34,9 @@ function StyledComponent() {
   return (
     <div>
       <Father>
-        <Box bgColor="teal" /> {/*[P3]props를 통해 컴포넌트에 데이터를 보냄 */}
-        <Circle bgColor="tomato" />
+        {/*[P3]props를 통해 컴포넌트에 데이터를 보냄 */}
+        {/* <Box bgColor="teal" />  */}
+        {/* <Circle bgColor="tomato" /> */}
       </Father>
       <Btn>Log in</Btn>
       {/*[P6] as: btn과 같은 스타일을 사용하는데 태그요소가 다를 경우 */}
