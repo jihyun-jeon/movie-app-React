@@ -5,5 +5,5 @@ export const theme: DefaultTheme = {
   //theme의 타입은 DefaultTheme라고 지정해줌
   bgColor: "#2f3640",
   textColor: "#f5f6fa",
-  accentColor: "violet",
+  accentColor: "#da24ffab",
 };

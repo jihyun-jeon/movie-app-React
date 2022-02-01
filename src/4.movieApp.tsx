@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
-import Router from "./Router";
+import Router from "./3.Router";
 
-//GlobalStyle: 컴포넌트를 만들 수 있게 해주는데, 컴포넌트가 렌더링 될때 전역 스코프에 스타일을 적용해줌.
+//createGlobalStyle: 컴포넌트를 만드는데, 컴포넌트가 렌더링 될때 "전역 스코프에 스타일"을 적용해줌.
 //기본css를 리셋시키는 소스: https://github.com/zacanger/styled-reset/blob/master/src/index.ts
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -52,9 +52,11 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-// 앱의 기본 스타일 지정해줌.
+// 앱의 기본 스타일 직접 지정해줌.
 *{
-  box-sizing: border-box;
+  box-sizing: border-box; 
+  //content-box: width와 height 속성이 컨텐트 내용부분에만 적용되는데, 
+   //box-sizing: width와 height 속성이 컨텐트 내용부분뿐 아니라 테두리영역까지 적용됨.
 }
 body {
   font-family: 'Source Sans Pro', sans-serif;
@@ -65,7 +67,6 @@ a {
   text-decoration:none;
   color: inherit;
 }
-
 `;
 
 function MovieApp() {

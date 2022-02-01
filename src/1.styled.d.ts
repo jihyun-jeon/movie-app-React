@@ -13,3 +13,5 @@ declare module "styled-components" {
     accentColor: string;
   }
 }
+
+//질문1) d.ts??
