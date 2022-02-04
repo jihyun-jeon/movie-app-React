@@ -3,7 +3,7 @@ import Coin from "./3-2.Coin";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { fetchCoins } from "../api";
+import { fetchCoins } from "../3-0.api";
 
 const Container = styled.div`
   padding: 0px 20px;
@@ -68,14 +68,23 @@ interface CoinArrInterface {
 
 function Coins() {
   /*react-query 사용
-    :useQuery라는 훅이 fetcher함수임 fetchCoins를 불러오고,
+    *useQuery라는 훅이 api를 호출하는 fetcher함수인 fetchCoins를 불러오고,
     fetchCoins함수가 api 불러오는 중일땐 isLoading은 true임.
     fetchCoins함수가 끝나면 isLoading값을 false로 바꾸고, 리턴값을 data에 넣음.
-    *react-query가 데이터를 캐시에 저장해 두게 됨. 따라서 coin페이지에서 뒤로가기 눌렀을떄 다시 loading...이 보이지 않는 것임.
+    *react-query가 데이터를 캐시에 저장해 두게 됨.(react-query는 데이터를 파괴하지 않고 유지하고 있음)
+    따라서 coin페이지에서 뒤로가기 눌렀을떄 coins페이지에 다시 loading...이 보이지 않는 것임.
+    ㄴreact-query 는 api에 다시 접근하지 않게됨.
+    *react-query에 있는 devtools를 import하면 캐시에 저장된 쿼리를 볼 수 있음.
   */
+
   const { isLoading, data } = useQuery<CoinArrInterface[]>(
     "allCoins",
     fetchCoins
+    //fetchCoins함수의 반환값은 promise 객체 안에{json데이터 값 있는꼴} <-원래 이건데 useQuery를 이용하면 data에 바로 json데이터 값만 딱 들어가게 됨(.then()할 필요 없음)
+    //data에 값이 들어가면 isloading도 true => false 바뀜
+    //allCoins : key이름임(이 쿼리의 특정 이름을 붙여주는 것). api 호출할떄? 유니크한 키 이름을 지정해 줘야 함.(li에 key를 넣는 것과 같은 원리)
+    //  ㄴ> react-query 캐시에 저장되고 작동하기 위해 고유한 값을 붙여준 것임.
+    //  ㄴ> 이게 있어야 한번 캐시에 저장된 값이면, 이미 캐시에 어떤 데이터가 있는지 알곤 다시 api호출 안할 수 있게 됨.
   );
   /*// < react-query를 이용하면 이 주석된 코드 통째로 한줄로 바뀜>
   const [loading, setLoad] = useState(true);

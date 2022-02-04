@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import Router from "./3.Router";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 //createGlobalStyle: 컴포넌트를 만드는데, 컴포넌트가 렌더링 될때 "전역 스코프에 스타일"을 적용해줌.
 //기본css를 리셋시키는 소스: https://github.com/zacanger/styled-reset/blob/master/src/index.ts
@@ -60,8 +61,8 @@ table {
 }
 body {
   font-family: 'Source Sans Pro', sans-serif;
-  background-color: ${(prop) => prop.theme.bgColor};
-color:  ${(prop) => prop.theme.textColor};
+  background-color: ${(prop) => (prop.theme as any).bgColor};
+  color:  ${(prop) => (prop.theme as any).textColor};
 }
 a {
   text-decoration:none;
@@ -74,6 +75,12 @@ function MovieApp() {
     <>
       <GlobalStyle />
       <Router />
+      <ReactQueryDevtools initialIsOpen={true} />
+      {/*캐시에 저장된 쿼리를 볼 수 있음. */}
+      {/*02.04질문) coin,coins에서 react-query를 사용했는데 왜 이 파일에서 캐시 렌더 하는지? 
+        ㄴ>캐시는 react-query 내부의 전역공간에 저장됨. 그래서ReactQueryDevtools는 어디에든 써도 상관 없음.
+          그러나 coins파일이 렌더 되기 전에, app이 시작하자마자 미리 쿼리를 보면 디버깅하기 편하기 떄문에 이 밖에다 써준 것임.
+      */}
     </>
   );
 }
